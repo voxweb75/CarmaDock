@@ -7,8 +7,14 @@ web:
         - Docker/nginx:/etc/nginx/conf.d
     links:
         - php:php
+        - db:db
 
 php:
-    image: php:5.6.10-fpm
+    build: Docker/php
     volumes:
         - Laravel:/usr/share/nginx/html
+
+db:
+    image: mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
